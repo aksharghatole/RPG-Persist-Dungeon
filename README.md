@@ -1,5 +1,7 @@
 # AI Dungeon Master
 
+[Play locally](#installation-and-running) · [Features](#features) · [Tests](#tests)
+
 AI Dungeon Master is a local, chat-based fantasy RPG set in **The Ashen Kingdom**. You create a character, enter the storm outside Blackthorn Village, and describe any action in natural language. SQLite remembers your character, inventory, NPCs, quests, events, messages, and current location between sessions.
 
 ## Features
@@ -46,4 +48,3 @@ pytest -q
 ## Future features
 
 Interactive maps, AI character portraits, voice narration, music, procedural world generation, multiplayer, faction system, advanced combat, richer relationship system, and campaign sharing.
-# RPG-Persist-Dungeon
