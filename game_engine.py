@@ -105,11 +105,13 @@ def resolve_action(action: str, character: Character, inventory: list[Item], ene
         return result
     if any(word in lowered for word in ("drink", "use", "consume")) and "potion" in lowered:
         potion = next((item for item in inventory if "potion" in item.name.lower() and item.quantity > 0), None)
-        if potion:
+        if potion and character.hp < character.max_hp:
             healed = min(10, character.max_hp - character.hp)
             character.hp += healed
             potion.quantity -= 1
             result["events"].append(f"You use a Health Potion and recover {healed} HP.")
+        elif potion:
+            result["events"].append("You are already at full health; the potion is not used.")
         else:
             result["events"].append("You have no health potion.")
         return result
