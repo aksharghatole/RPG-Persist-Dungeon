@@ -33,3 +33,15 @@ def test_campaign_round_trip(tmp_path: Path):
     assert loaded is not None
     assert loaded["character"]["name"] == "Asha"
     assert loaded["quests"][0]["status"] == "Active"
+
+
+def test_potion_is_not_consumed_at_full_health():
+    character = starting_character("Asha", "Human", "Warrior", "Adventurer")
+    inventory = default_inventory("Warrior")
+    potion = inventory[1]
+
+    result = resolve_action("I drink a health potion", character, inventory)
+
+    assert character.hp == character.max_hp
+    assert potion.quantity == 2
+    assert "already at full health" in result["events"][0]
